@@ -1,0 +1,106 @@
+{% extends 'head.html' %}
+{% block content %}
+{% if dance_idols %}
+{% for card in dance_idols %}
+<!-- CardData model from card_data table -->
+<div class="card" style="float:left; padding: 15" id="test">
+    <div class="panel cute" style="padding: 0; background-color: #ff6c99; line-height: 1.425">
+        {% load static %}
+        <img src="{% static "200597.png" %}" height="auto" width="100%" data-regular-src="{% static "200597.png" %}" data-awk-src="{% static "200598.png" %}">
+        <div class="rarity" style="color: #9c0734; text-align: center">
+            <strong>{{rarity.card.rarity}}</strong>
+        </div>
+        <!--Need id to make each collapse sep? Testing later-->
+        <div id="collapseN" class="panel-collapse">
+            <div class="panel-body text-center" style="background-color:#FFFFFF; color:#000000">
+                <div class="row">
+                    <hr>
+                    <!--Card name (english)-->
+                    <p>{{card.name}}</p>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!--Card name (japanese)-->
+                    <p>{{card.name}}</p>
+                    <hr>
+                </div>
+                <div class="row" style="display: block">
+                    <!-- Rarity and Type  -->
+                    <div style="width:50%; float: left;">
+                        <p>
+                            <span style="font-weight: bold; text-align: left;">Rarity: </span>{{rarity.card.rarity}}
+                        </p>
+                    </div>
+                    <div style="width:50%; float: left;">
+                        <p>
+                            <span style="font-weight: bold; text-align: right;">Type: </span>Cool
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- Regular/awakened toggle -->
+                    <label for="regawk"><input type="radio" name="regawk" onchange="swapCostume(this, 'regular')" checked>Regular</label>
+                    <label for="regawk"><input type="radio" name="regawk" onchange="swapCostume(this, 'awk')">Awakened</label>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- level selector -->
+                    <div class="stepper">
+                        <!-- create stats_step analog to reference stats and inc or dec -->
+                        <button>-</button>
+                        <input class="level" type="number" min="1" max="80" value="1" style="font-size: 14pt">
+                        <button>+</button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- Stats -->
+                    <table>
+                        <tr>
+                            <!-- life_min - life_max -->
+                            <td class="life">{{card.hp_min}}</td>
+                            <!-- vocal_min - vocal_max -->
+                            <td class= "vocal">{{card.vocal_min}}</td>
+                            <!-- dance_min - dance_max -->
+                            <td class= "dance">{{card.dance_min}}</td>
+                            <!-- visual_min - visual_max -->
+                            <td class="visual">{{card.visual_min}}</td>
+                            <!-- overall appeal -->
+                            <td class="overall">{{card.vocal_min|add:card.dance_min|add:card.visual_min}}</td>
+                            <!-- max level -->
+                            <td class="max_level">80</td>
+                        </tr>
+                        <tr>
+                            <th class="life_header">Life</th>
+                            <th class="vocal_header">Vocal</th>
+                            <th class="dance_header">Dance</th>
+                            <th class="visual_header">Visual</th>
+                            <th class="overall_header">Overall</th>
+                            <th class="max_level_header">Max Level</th>
+                        </tr>
+                    </table>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- Skill -->
+                </div>
+                <div class="row">
+                    <!-- Leader Skill -->
+                    <h3>Center Skill:</h3>
+                    <p>{{card.skill_id}}</p>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- Icon and Puchi art -->
+                </div>
+                <div class="row">
+                    <!-- Release Date -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
