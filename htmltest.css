@@ -6,6 +6,10 @@
     display: block;
 }
 
+#testcss:checked ~ #collapseN {
+    display: none;
+}
+
 .stepper {
     font-size: 0px;
     border: 1px solid green;
@@ -108,17 +112,16 @@ th.max_level_header {
     color: rgb(145, 158, 25);
 }
 
-
-
-@media screen and (min-width: 600px) and (max-width: 1199px){
+/* didn't account for padding, fix */
+@media screen and (min-width: 1200px){
     .card {
-        width: 50%;
+        width: 30%;
     }
 }
 
-@media screen and (min-width: 1200px) and (max-width: 1799px){
+@media screen and (max-width: 600px){
     .card {
-        width: 33.3%;
+        width: 50%;
     }
 }
 
