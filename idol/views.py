@@ -5,7 +5,7 @@ from .models import CardData
 
 def index(request):
     dance_idols = CardData.objects.order_by('-dance_max')[:5]
-    rarity = ['B', 'N', 'N+', 'R', 'R+', 'SR', 'SR+', 'SSR', 'SSR+']
+    rarity = ['', 'N', 'N+', 'R', 'R+', 'SR', 'SR+', 'SSR', 'SSR+']
     template = loader.get_template('card.html')
     context = {
         'dance_idols': dance_idols,
