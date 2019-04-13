@@ -1,14 +1,16 @@
 {% extends 'head.html' %}
 {% block content %}
 {% if dance_idols %}
+{% load customize %}
 {% for card in dance_idols %}
 <!-- CardData model from card_data table -->
 <div class="card" style="float:left; padding: 15" id="test">
     <div class="panel cute" style="padding: 0; background-color: #ff6c99; line-height: 1.425">
         {% load static %}
-        <img src="{% static "200597.png" %}" height="auto" width="100%" data-regular-src="{% static "200597.png" %}" data-awk-src="{% static "200598.png" %}">
+        <input type="checkbox" class="cardtoggle" id="{{card.id}}" style="display:none"/>
+        <label for="{{card.id}}"><img src={% get_static_prefix %}{{card.id | create_spread_uri}} height="auto" width="100%" data-regular-src={% get_static_prefix %}{{card.id | create_spread_uri}} data-awk-src="{% get_static_prefix %}{{card.id | add:1 | create_spread_uri}}"></label>
         <div class="rarity" style="color: #9c0734; text-align: center">
-            <strong>{{rarity.card.rarity}}</strong>
+            <strong>{{rarity|list_access:card.rarity}}</strong>
         </div>
         <!--Need id to make each collapse sep? Testing later. Border like in game?-->
         <div id="collapseN" class="panel-collapse">
@@ -28,7 +30,7 @@
                     <!-- Rarity and Type  -->
                     <div style="width:50%; float: left;">
                         <p>
-                            <span style="font-weight: bold; text-align: left;">Rarity: </span>{{card.rarity}}
+                            <span style="font-weight: bold; text-align: left;">Rarity: </span>{{rarity|list_access:card.rarity}}
                         </p>
                     </div>
                     <div style="width:50%; float: left;">
@@ -84,6 +86,7 @@
                 </div>
                 <div class="row">
                     <!-- Skill -->
+                    {{card.id}}
                 </div>
                 <div class="row">
                     <!-- Leader Skill -->

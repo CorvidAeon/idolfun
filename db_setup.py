@@ -37,9 +37,9 @@ def save_img(link, save_loc):
 
 # should only run once
 def get_all_images():
-    spread_save_loc = "idol/static/images/spread/"
-    puchi_save_loc = "idol/static/images/puchi/"
-    icon_save_loc = "idol/static/images/icon/"
+    spread_save_loc = "images/spread/"
+    puchi_save_loc = "images/puchi/"
+    icon_save_loc = "images/icon/"
     resume = False
     resume_point = 300612
     for card_id in CardData.objects.values_list('id', flat=True):
